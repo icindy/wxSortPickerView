@@ -23,13 +23,15 @@ Page({
   },
   onShow: function(){
     var animation = wx.createAnimation({
-      duration: 1000,
-        timingFunction: 'ease',
+        transformOrigin: "50% 50%",
+  duration: 1000,
+  timingFunction: "ease",
+  delay: 0
     })
 
     this.animation = animation
 
-    animation.scale(2,2).rotate(45).step()
+    animation.height(10).top(30).left(30).step()
     var temData = this.data.wxSortPickerData;
     temData.animationData = animation.export()
     this.setData({

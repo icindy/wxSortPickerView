@@ -1,13 +1,14 @@
 <template name="wxSortPickerView">
-<view animation="{{wxSortPickerData.animationData}}" style="background:red;height:100rpx;width:100rpx"></view>
-    <!--<view animation="{{animationData}}" class="wxSortPickerViewList">
+    <scroll-view class="wxSortPickerViewList" scroll-y="true" style="height: 600px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <!--<view animation="{{wxSortPickerData.animationData}}" class="wxSortPickerViewList">-->
         <block wx:for="{{wxSortPickerData.textData}}" wx:for-item="item" wx:key="">
             <view class="wxSortPickerViewTag">{{item.tag}}</view>
             <template is="wxSortPickerViewItem" data="{{item}}"/>
         </block>
-    </view>
+    <!--</view>-->
+    </scroll-view>
 
-    <template is="wxSortPickerViewTemTags" data="{{item}}"/>-->
+    <template is="wxSortPickerViewTemTags" data="{{item}}"/>
 </template>
 
 <template name="wxSortPickerViewItem">

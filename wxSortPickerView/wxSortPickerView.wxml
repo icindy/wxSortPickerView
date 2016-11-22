@@ -1,3 +1,4 @@
+
 <template name="wxSortPickerView">
     <scroll-view class="wxSortPickerViewList" scroll-y="true" style="height: {{wxSortPickerData.view.scrollHeight}}px;" bindscrolltoupper="wxSortPickerViewUpper" bindscrolltolower="wxSortPickerViewLower" bindscroll="wxSortPickerViewScroll" scroll-into-view="{{wxSortPickerData.wxSortPickerViewtoView}}" scroll-top="{{wxSortPickerData.wxSortPickerViewScrollTop}}">
     <!--<view animation="{{wxSortPickerData.animationData}}" class="wxSortPickerViewList">-->

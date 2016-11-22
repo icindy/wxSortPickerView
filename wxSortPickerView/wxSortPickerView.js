@@ -76,24 +76,111 @@ function query(text) {
     return arrRslt;
 }
 
-function init(array,that,callback){
+function init(array, that, callback) {
+    var temData = that.data.wxSortPickerData;
+    if(typeof temData == 'undefined'){
+        temData = {};
+    }
     that.wxSortPickerViewUpper = wxSortPickerViewUpper;
     that.wxSortPickerViewLower = wxSortPickerViewLower;
     that.wxSortPickerViewScroll = wxSortPickerViewScroll;
+    that.wxSortPickerViewTemTagTap = wxSortPickerViewTemTagTap;
+    setViewWH(that);
+
+    buildTextData(that,array);
 }
-function wxSortPickerViewUpper(e){
+
+function buildTextData(that,arr){
+    var textData = [{ tag: "A", textArray: [] }, 
+               { tag: "B", textArray: [] }, 
+               { tag: "C", textArray: [] }, 
+               { tag: "D", textArray: [] }, 
+               { tag: "E", textArray: [] }, 
+               { tag: "F", textArray: [] }, 
+               { tag: "G", textArray: [] }, 
+               { tag: "H", textArray: [] }, 
+               { tag: "I", textArray: [] }, 
+               { tag: "J", textArray: [] }, 
+               { tag: "K", textArray: [] }, 
+               { tag: "L", textArray: [] }, 
+               { tag: "M", textArray: [] },
+               { tag: "N", textArray: [] }, 
+               { tag: "O", textArray: [] }, 
+               { tag: "P", textArray: [] }, 
+               { tag: "Q", textArray: [] }, 
+               { tag: "R", textArray: [] }, 
+               { tag: "S", textArray: [] }, 
+               { tag: "T", textArray: [] }, 
+               { tag: "U", textArray: [] }, 
+               { tag: "V", textArray: [] }, 
+               { tag: "W", textArray: [] }, 
+               { tag: "X", textArray: [] }, 
+               { tag: "Y", textArray: [] }, 
+               { tag: "Z", textArray: [] }, 
+               { tag: "#", textArray: [] }];
+    
+    var temABC = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#'];
+      
+    for (var i = 0; i < arr.length; i++ ){
+        var text = arr[i];
+        var firstChar = text.substr(0, 1);
+        var reg = query(firstChar)[0];
+        var temIndex = temABC.indexOf(reg);
+        textData[temIndex].textArray.push(text);
+    }
+    var temData = that.data.wxSortPickerData;
+    if(typeof temData == 'undefined'){
+            temData = {};
+    }
+    temData.textData = textData;
+    that.setData({
+        wxSortPickerData: temData
+    })
+}
+
+function wxSortPickerViewUpper(e) {
     console.dir(e);
 }
 
-function wxSortPickerViewLower(e){
+function wxSortPickerViewLower(e) {
     console.dir(e);
 }
 
-function wxSortPickerViewScroll(e){
+function wxSortPickerViewScroll(e) {
     console.log(e.detail.scrollTop);
 }
 
+function setViewWH(that) {
+    wx.getSystemInfo({
+        success: function (res) {
+            // console.dir(res);
+            var windowWidth = res.windowWidth;
+            var windowHeight = res.windowHeight;
+            var temData = that.data.wxSortPickerData;
+            if(typeof temData == 'undefined'){
+                temData = {};
+            }
+            var view = {};
+            view.scrollHeight = windowHeight;
+            temData.view = view;
+            that.setData({
+                wxSortPickerData: temData
+            })
+        }
+    })
+}
+
+function wxSortPickerViewTemTagTap(e) {
+    var that = this;
+    var temData = that.data.wxSortPickerData;
+    temData.wxSortPickerViewtoView = e.target.dataset.tag;
+    that.setData({
+        wxSortPickerData: temData
+    })
+
+}
+
 module.exports = {
-    init:init,
-  query: query
+    init: init,
+    query: query
 }

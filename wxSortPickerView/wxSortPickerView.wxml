@@ -1,8 +1,9 @@
 <template name="wxSortPickerView">
-    <scroll-view class="wxSortPickerViewList" scroll-y="true" style="height: 600px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <scroll-view class="wxSortPickerViewList" scroll-y="true" style="height: 600px;" bindscrolltoupper="wxSortPickerViewUpper" bindscrolltolower="wxSortPickerViewLower" bindscroll="wxSortPickerViewScroll" scroll-into-view="{{wxSortPickerViewtoView}}" scroll-top="{{wxSortPickerViewScrollTop}}">
     <!--<view animation="{{wxSortPickerData.animationData}}" class="wxSortPickerViewList">-->
+        <view class="wxSortPickerViewTag wxSortPickerViewFixedTag">{{wxSortPickerData.nowTag}}</view>
         <block wx:for="{{wxSortPickerData.textData}}" wx:for-item="item" wx:key="">
-            <view class="wxSortPickerViewTag">{{item.tag}}</view>
+            <view id="{{item.tag}}" class="wxSortPickerViewTag">{{item.tag}}</view>
             <template is="wxSortPickerViewItem" data="{{item}}"/>
         </block>
     <!--</view>-->

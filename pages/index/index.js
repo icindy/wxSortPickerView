@@ -5,21 +5,12 @@ var wxSortPickerView = require('../../wxSortPickerView/wxSortPickerView.js');
 Page({
   data: {
     nimationData: {},
-    wxSortPickerData:{textData:[{tag:"A",textArray:["啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄"]},{tag:"B",textArray:[]},{tag:"A",textArray:["啊","嗄"]}]}
-  },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+    wxSortPickerData:{textData:[{tag:"A",textArray:["啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄"]},{tag:"B",textArray:["啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄","啊","嗄"]},{tag:"C",textArray:["啊","嗄"]}]}
   },
   onLoad: function () {
     console.log('onLoad')
     var that = this
-    var testData = wxSortPickerView.query("你好嘛");
-    that.setData({
-      testData:testData
-    })
+    wxSortPickerView.init([],that);
   },
   onShow: function(){
     var animation = wx.createAnimation({

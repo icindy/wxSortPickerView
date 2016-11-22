@@ -74,8 +74,26 @@ function query(text) {
     if (str == "") return;
     var arrRslt = makePy(str);
     return arrRslt;
-}  
+}
+
+function init(array,that,callback){
+    that.wxSortPickerViewUpper = wxSortPickerViewUpper;
+    that.wxSortPickerViewLower = wxSortPickerViewLower;
+    that.wxSortPickerViewScroll = wxSortPickerViewScroll;
+}
+function wxSortPickerViewUpper(e){
+    console.dir(e);
+}
+
+function wxSortPickerViewLower(e){
+    console.dir(e);
+}
+
+function wxSortPickerViewScroll(e){
+    console.log(e.detail.scrollTop);
+}
 
 module.exports = {
+    init:init,
   query: query
 }
